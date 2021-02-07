@@ -21,8 +21,8 @@ void fileReader::openFile(QString fileName){
 QList <QStringList> fileReader::readFromFile(){
     QList <QStringList> wordList;
     while (!file.atEnd()) {
-        QString line = QString::fromUtf8(file.readLine());
-        wordList.append(line.split(',').split('\n'));
+        QString line = QString::fromUtf8(file.readLine().trimmed());
+        wordList.append(line.split(','));
     }
     qDebug() << wordList;
     return wordList;
