@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlError>
+#include "filereader.h"
 
 
 
@@ -12,18 +13,18 @@ bool connectDB(){
     return db.open();
 }
 
-void insertFromFile(QList <QString> value){
+void insertFromFile(QList <QString> atribute, QList <QString> value){
     QSqlQuery query;
     QStringList text4;
-    for (int i=0; i<value.size();i++){
+    for (int i=0; i<atribute.size();i++){
         text4.append("?");
     }
-    QString text1="INSERT INTO mail(" + value.join(",") + ") VALUES (" + text4.join(",") + ")";
+    QString text1="INSERT INTO mail(" + atribute.join(",") + ") VALUES (" + text4.join(",") + ")";
     qDebug()<<text1;
     query.prepare(text1);
-    for (int i=0; i<value.size();i++){
+    for (int i=0; i<atribute.size();i++){
 
-        query.addBindValue(1001);
+        query.addBindValue(value[i]);
     }
     if(!query.exec())
             {
@@ -54,7 +55,15 @@ int main(int argc, char *argv[])
              qDebug()<<test;
          }
     QList <QString> test2;
+    QList <QStringList> testInsert;
+    QString filename="test.csv";
+    fileReader testFile;
+    testFile.openFile(filename);
+    testInsert = testFile.readFromFile();
+
     test2 ={"id","address","subject","text"};
-    insertFromFile(test2);
+    for (int i=0; i<testInsert.size();i++){
+        insertFromFile(test2, testInsert[i]);
+    }
     return a.exec();
 }

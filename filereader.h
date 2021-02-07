@@ -9,9 +9,10 @@
 class fileReader
 {
 public:
+    QFile file;
     fileReader();
     void openFile(QString fileName);
-    QStringList readFromFile(QFile file);
+    QList <QStringList> readFromFile();
 };
 
 #endif // FILEREADER_H

@@ -1,13 +1,16 @@
 #include "filereader.h"
 
+
+
 fileReader::fileReader()
 {
 
 }
 
 void fileReader::openFile(QString fileName){
-    QFile file(fileName);
+    file.setFileName(fileName);
     if (!file.open(QIODevice::ReadOnly)) {
+        qDebug()<<"Can't open file!";
         qDebug() << file.errorString();
         return;
     }
@@ -15,11 +18,11 @@ void fileReader::openFile(QString fileName){
 }
 
 
-QStringList fileReader::readFromFile(QFile file){
-    QStringList wordList;
+QList <QStringList> fileReader::readFromFile(){
+    QList <QStringList> wordList;
     while (!file.atEnd()) {
-        QByteArray line = file.readLine();
-        wordList.append(line.split(',').first());
+        QString line = QString::fromUtf8(file.readLine());
+        wordList.append(line.split(',').split('\n'));
     }
     qDebug() << wordList;
     return wordList;
