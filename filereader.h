@@ -12,7 +12,7 @@ public:
     QFile file;
     fileReader();
     void openFile(QString fileName);
-    QList <QStringList> readFromFile();
+    QList <QStringList> readFromFile(QChar delimiter);
 };
 
 #endif // FILEREADER_H

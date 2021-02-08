@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
     QString filename="test.csv";
     fileReader testFile;
     testFile.openFile(filename);
-    testInsert = testFile.readFromFile();
+    testInsert = testFile.readFromFile(',');
 
     test2 ={"id","address","subject","text"};
     for (int i=0; i<testInsert.size();i++){
