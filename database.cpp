@@ -1,23 +1,19 @@
-#include "db.h"
+#include "database.h"
 
-db::db()
-{
-}
 
-//QString HOST="localhost";
-//QString PORT="5432";
-//QString DBNAME="test_db";
-//QString USER="test";
-//QString PASSWORD="test";
-
-bool db::connectDB(QString HOST,QString PORT,QString  DBNAME, QString USER, QString PASSWORD){
+bool DataBase::connectDB(QString HOST,QString PORT,QString  DBNAME, QString USER, QString PASSWORD){
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
-    db.setConnectOptions("host="+HOST+"port="+PORT+"dbname="+DBNAME+"user="+USER+"password="+PASSWORD);
+//    db.setConnectOptions("host="+HOST+"port="+PORT+"dbname="+DBNAME+"user="+USER+"password="+PASSWORD);
+    db.setHostName(HOST);
+    db.setPort(PORT.toInt());
+    db.setDatabaseName(DBNAME);
+    db.setUserName(USER);
+    db.setPassword(PASSWORD);
     return db.open();
 }
 
 
-void db::insertFromFile(QList <QString> atribute, QList <QString> value){
+void DataBase::insertFromFile(QList <QString> atribute, QList <QString> value){
     QSqlQuery query;
     QStringList text4;
     for (int i=0; i<atribute.size();i++){

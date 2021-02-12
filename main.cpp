@@ -1,12 +1,12 @@
 #include <QCoreApplication>
 #include "filereader.h"
-#include "db.h"
+#include "database.h"
 
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    db db1;
+    DataBase db1;
     if (db1.connectDB("localhost", "5432", "test_db", "test", "test")){
         qDebug()<<"Sucsess connect";
     }
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     QList <QString> test2;
     QList <QStringList> testInsert;
     QString filename="test.csv";
-    fileReader testFile;
+    FileReader testFile;
     testFile.openFile(filename);
     testInsert = testFile.readFromFile(',');
     test2 ={"id","address","subject","text"};

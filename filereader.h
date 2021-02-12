@@ -6,11 +6,11 @@
 #include <QStringList>
 
 
-class fileReader
+class FileReader
 {
 public:
+    FileReader(){};
     QFile file;
-    fileReader();
     void openFile(QString fileName);
     QList <QStringList> readFromFile(QChar delimiter);
 };

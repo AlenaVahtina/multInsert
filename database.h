@@ -7,15 +7,15 @@
 #include <QSqlError>
 
 
-class db
+class DataBase : public QObject
 {
 public:
+    DataBase(){};
     QString HOST;
     QString PORT;
     QString DBNAME;
     QString USER;
     QString PASSWORD;
-    db();
     bool connectDB(QString HOST,QString PORT,QString  DBNAME, QString USER, QString PASSWORD);
     void insertFromFile(QList <QString> atribute, QList <QString> value);
 };

@@ -17,8 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     filereader.cpp \
-    db.cpp
+    database.cpp
 
 HEADERS += \
     filereader.h \
-    db.h
+    database.h
