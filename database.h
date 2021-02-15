@@ -17,7 +17,8 @@ public:
     QString USER;
     QString PASSWORD;
     bool connectDB(QString HOST,QString PORT,QString  DBNAME, QString USER, QString PASSWORD);
-    void insertFromFile(QList <QString> atribute, QList <QString> value);
+    void insertFromFile(QList <QString> atribute,QList<QList<QVariant>> value);
+    void insertFromFileold(QList <QString> atribute, QList<QString> value);
 };
 
 #endif // DB_H

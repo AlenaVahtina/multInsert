@@ -12,7 +12,7 @@ void FileReader::openFile(QString fileName){
 }
 
 
-QList <QStringList> FileReader::readFromFile(QChar delimiter){
+QList <QStringList> FileReader::readFromFile(QChar delimiter, QList<QList<QVariant>> &testInsert){
     QList <QStringList> wordList;
 
     while (!file.atEnd()) {
@@ -44,6 +44,9 @@ QList <QStringList> FileReader::readFromFile(QChar delimiter){
                pos++;
         }
         str.push_back(QString(field));
+        for (int i=0; i<str.size(); i++){
+            testInsert[i].append(str[i]);
+        }
         wordList.append(str);
     }
     qDebug() << wordList;
